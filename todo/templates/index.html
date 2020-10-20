@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body >
+    <header class="text-center mb-1 p-2 header">
+        <h1 style="color: #D5CE0B;">This is todo page</h1>
+    </header>
+    <main style="height: 100%;" class="container main">
+        <form class="p-3 mb-3 mx-2" action="/addTodo/" method="post">{% csrf_token %}
+            <input class="m-2 p-4  form-control" placeholder="Add text..." name="content">
+            <input class="mx-2 form-control btn btn-primary" type="submit" value="add">
+        </form>
+        <div class="pb-4 mx-3">
+            {% for item in all_items %}
+                <div class="row p-4 m-3 item">
+                    <div class="col-md-8 content">{{ item.content }}</div>
+
+                    <div class="col-md-2">
+                        <form action="/deleteTodo/{{item.id}}/" method="post">{% csrf_token %}
+                            <input class=" btn btn-danger" type="submit" value="delete">
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <form  action="/editTodo/{{item.id}}/" method="get">{% csrf_token %}
+                            <button class="btn btn-warning" type="submit">edit</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

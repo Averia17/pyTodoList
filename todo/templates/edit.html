@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <style>
+        .header {
+            background: #850796;
+            font-weight: 800;
+        }
+        h1 {
+            font-weight: 800;
+        }
+        body {
+            background: #000000;
+        }
+        .main {
+            background: #F4E5F5;
+            box-shadow: -4px 7px 34px -6px rgba(92,88,92,1);
+            padding-top: 8%;
+        }
+        .container {
+            width: 50%;
+        }
+        .form-control {
+            margin: 0 auto;
+        }
+        .content {
+            height: 20%;
+            font-size: 20px;
+        }
+        h2 {
+            padding: 2% 10%;
+            font-weight: 700;
+
+        }
+    </style>
+</head>
+<body>
+    <header class="text-center header mb-1 p-2">
+        <h1 style="color: #D5CE0B;">This is edit page</h1>
+    </header>
+    <main style="height: 89vh;" class="form px-5 container main">
+        <h2>Edit your message</h2>
+        <form style="display: inline;" method="post">{% csrf_token %}
+            <input type="text" name="content" value="{{ item.content }}" class="form-control content">
+            <input type="submit" value="EDIT"  class="btn btn-success form-control">
+        </form>
+    </main>
+</body>
+</html>
